@@ -7,8 +7,8 @@ import (
 )
 
 func Auth(c *gin.Context) {
-	user, password, hasAuth := c.Request.BasicAuth()
-	if hasAuth && user == "admin" && password == "admin" {
+	user, password, ok := c.Request.BasicAuth()
+	if ok && user == "admin" && password == "admin" {
 		log.Printf("User %s authorized", user)
 	} else {
 		c.AbortWithStatus(http.StatusUnauthorized)

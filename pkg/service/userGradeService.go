@@ -10,7 +10,7 @@ type UserGradeService struct {
 	repo storage.Repository
 }
 
-func NewUserGradeService(repo storage.Repository) UserGrade {
+func NewUserGradeService(repo storage.Repository) *UserGradeService {
 	return &UserGradeService{repo: repo}
 }
 
