@@ -2,7 +2,10 @@ module github.com/ksean42/test_task
 
 go 1.19
 
-require github.com/gin-gonic/gin v1.8.1
+require (
+	github.com/gin-gonic/gin v1.8.1
+	github.com/gocarina/gocsv v0.0.0-20221105105431-c8ef78125b99
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect

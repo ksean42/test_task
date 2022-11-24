@@ -16,6 +16,7 @@ func NewHandler(service service.UserGrade) *Handler {
 func (h *Handler) NewGetRouter() *gin.Engine {
 	r := gin.Default()
 	r.GET("/get", h.Get)
+	r.GET("/backup", h.Backup)
 	return r
 }
 
@@ -23,7 +24,7 @@ func (h *Handler) NewSetRouter() *gin.Engine {
 	r := gin.Default()
 	auth := r.Group("/", middleware.Auth)
 	{
-		auth.GET("/set", h.Set)
+		auth.POST("/set", h.Set)
 	}
 	return r
 }

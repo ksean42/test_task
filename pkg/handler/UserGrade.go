@@ -36,11 +36,16 @@ func (h *Handler) Set(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, model.ErrorResponse{Error: "Bad request"})
 		return
 	}
-	err = h.service.Set(req)
+	c.JSON(http.StatusOK, gin.H{"Result": "OK"})
+}
+
+func (h *Handler) Backup(c *gin.Context) {
+	file, err := h.service.Backup()
 	if err != nil {
 		log.Println(err)
-		c.AbortWithStatusJSON(http.StatusBadRequest, model.ErrorResponse{Error: "Bad request"})
+		c.AbortWithStatusJSON(http.StatusInternalServerError, model.ErrorResponse{Error: err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"Result": "OK"})
+	c.Status(200)
+	c.FileAttachment(file, "csv.gz")
 }

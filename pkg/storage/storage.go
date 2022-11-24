@@ -45,3 +45,13 @@ func (s *Storage) Set(grade *model.UserGrade) error {
 	s.Unlock()
 	return nil
 }
+
+func (s *Storage) GetAll() *[]model.UserGrade {
+	var allEntries []model.UserGrade
+	s.RLock()
+	defer s.RUnlock()
+	for _, v := range s.UserGrades {
+		allEntries = append(allEntries, *v)
+	}
+	return &allEntries
+}

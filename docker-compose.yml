@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  user_grade_service:
+    build: ./
+    command:  ./userGradeService
+    ports:
+      - "8071:8071"
+      - "8070:8070"
